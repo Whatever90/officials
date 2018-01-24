@@ -1,0 +1,82 @@
+<a [routerLink]="['/enter']">Back</a>
+<div id="input">
+    <div id='login'>
+    <h1>Adding a promise</h1>
+    <form NAME='myForm2' (submit)= "newProm()" #myForm2="ngForm">
+        <p>Title: <input class='inbox'
+          type="text"
+          required 
+          name="title"
+          minlength="2" 
+          [(ngModel)]="promise.title"
+          #title='ngModel'>
+          <strong *ngIf='title.invalid && ( title.dirty || title.touched)'><span style="color: red">   Uphold Email format</span></strong><strong *ngIf='title.valid && ( title.dirty || title.touched)'><span style="color: green">   Looks good!</span></strong>
+        </p>
+        <p>Description: <input class='inbox' 
+          type="text" 
+          required 
+          minlength="2"
+          name="description"
+          [(ngModel)]="promise.description"
+          #description='ngModel'>
+        </p>
+        <p>Status:
+        <select class='inbox'
+          required
+          name="status"
+          [(ngModel)]="promise.status"
+          #status='ngModel'>
+          <option value="inproccess">In proccess</option>
+          <option value="succeed">Succeed</option>
+          <option value="failed">Failed</option>
+        </select></p>
+
+        <p>Official:
+        <select class='inbox'
+          required
+          name="official_id"
+          [(ngModel)]="promise.official_id"
+          #official_id='ngModel'>
+          <option *ngFor="let x of officials" [value]="x._id">{{x.first_name}} {{x.last_name}}</option>
+        </select></p>
+        <p>URL Link: <input class='inbox' 
+          type="text" 
+          name="link"
+          [(ngModel)]="promise.link"
+          #link='ngModel'>
+        </p>
+
+      <input type="submit" value="Add" [disabled]="myForm2.invalid">
+    </form>
+  </div>
+
+
+</div>
+<div id="news">
+  <div *ngIf='requests'>
+      <h2 align="center">Lists of new promises</h2>
+      <div  id='requests'>
+        <div *ngFor='let x of requests'>
+          <div class="request">
+            <a href={{x.link}}>Source</a>
+            <p>{{x.description}}</p>
+            <p>{{x.email}}</p>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div *ngIf='un_officials'>
+    <h2 align="center">List of new officials</h2>
+      <div  id='requests'>
+          <div *ngFor='let x of un_officials'>
+            <div class="request">
+              <img src={{x.photo}} width="300">
+              <p>{{x.first_name}} {{x.last_name}}</p>
+              <p>{{x.description}}</p>
+              <button (click)="confirm(x._id)">Confirm and Add</button>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+

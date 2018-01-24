@@ -1,0 +1,25 @@
+<a [routerLink]="['/enter']">Back</a>
+<div id='input'>
+  <div id='login'>
+    <h1>Admin Login</h1>
+    <form NAME='myForm2' (submit)= "login()" #myForm2="ngForm">
+        <h3>Email: <input class='inbox'
+          type="text"
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          name="login_email" [(ngModel)]="loginUser.email"
+          #login_email='ngModel'>
+          <strong *ngIf='login_email.invalid && ( login_email.dirty || login_email.touched)'><span style="color: red">   Uphold Email format</span></strong><strong *ngIf='login_email.valid && ( login_email.dirty || login_email.touched)'><span style="color: green">   Looks good!</span></strong>
+        </h3>
+        <h3>Password: <input class='inbox' 
+          type="text" 
+          required 
+          minlength="5" 
+          maxlength="24" name="login_password" [(ngModel)]="loginUser.password"
+          #login_password='ngModel'>
+        </h3>
+      <input type="submit" value="Login" [disabled]="myForm2.invalid">
+    </form>
+  </div>
+
+  </div>
+  <button (click) = logout()>Logout</button>

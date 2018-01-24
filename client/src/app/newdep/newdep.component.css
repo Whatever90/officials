@@ -1,0 +1,34 @@
+#registration{
+	border: black solid 1px;
+	width: 350px;
+	padding: 5px 5px;
+
+}
+#login{
+	border: black solid 1px;
+	width: 350px;
+	padding: 5px 5px;
+}
+#input{
+	display: flex;
+	padding: 10px 10px;
+	margin: auto 10;
+}
+.probox{
+	border: 1px solid black;
+	background-color: azure;
+	width: 712px;
+	padding: 5px 5px;
+	display: flex;
+}
+#requests{
+	display: inline-flex;
+}
+.request{
+	border: 1px solid silver;
+	width: 300px;
+	margin: 10px 10px;
+}
+#news{
+	display: inline-flex;
+}

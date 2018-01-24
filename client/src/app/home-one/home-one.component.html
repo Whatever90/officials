@@ -1,0 +1,22 @@
+<div id="main">
+	<div id="head">
+		<a [routerLink]="['/signin']">Login for admin</a>
+		<div *ngIf='user'>
+			<a [routerLink]="['/newofficial']">New Official</a>
+		</div>
+		<a [routerLink]="['/newrequest']">Add promise</a>
+	</div>
+	<div id="list">
+		<div *ngIf='officials' id="offs">
+			<div *ngFor='let off of officials'>
+				<a [routerLink]="[off._id]"><div id="official">
+					<img src={{off.photo}} width="300px" height="180px">
+					<h3>{{off.first_name}} {{off.last_name}}</h3>
+					<p>{{off.description}}</p>
+					<p><span style="color: red">{{off.rating}}</span></p>
+				</div></a>
+
+			</div>
+		</div>
+	</div>
+</div>

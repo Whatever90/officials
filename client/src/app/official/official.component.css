@@ -1,0 +1,15 @@
+.prom{
+	border: 1px solid silver;
+	width: 250px;
+	padding: 25 25;
+}
+#one_post{
+	border: 1px solid azure;
+	width: 250px;
+	padding-left: 15px;
+	padding-top: -10px;
+}
+#comment_form{
+	color: grey;
+	width: 250px;
+}

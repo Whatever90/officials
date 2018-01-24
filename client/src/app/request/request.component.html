@@ -1,0 +1,93 @@
+<a [routerLink]="['/enter']">Back</a>
+<div id="input">
+<div id="login">
+	<h1>Adding a promise</h1>
+    <form NAME='myForm2' (submit)= "newRequest()" #myForm2="ngForm">
+        <p>Link: <input class='inbox'
+          type="text"
+          required 
+          name="link"
+          minlength="2" 
+          [(ngModel)]="request.link"
+          #link='ngModel'>
+          <strong *ngIf='link.invalid && ( link.dirty || link.touched)'><span style="color: red">   Uphold Email format</span></strong><strong *ngIf='link.valid && ( link.dirty || link.touched)'><span style="color: green">   Looks good!</span></strong>
+        </p>
+        <p>Description: <input class='inbox' 
+          type="text" 
+          required 
+          minlength="2"
+          name="description"
+          [(ngModel)]="request.description"
+          #description='ngModel'>
+        </p>
+        <p>Your e-mail: <input class='inbox'
+          type="text"
+          required 
+          name="email"
+          minlength="2" 
+          [(ngModel)]="request.email"
+          #email='ngModel'>
+          <strong *ngIf='email.invalid && ( email.dirty || email.touched)'><span style="color: red">   Uphold Email format</span></strong><strong *ngIf='email.valid && ( email.dirty || email.touched)'><span style="color: green">   Looks good!</span></strong>
+        </p>
+        
+
+      <input type="submit" value="Add" [disabled]="myForm2.invalid">
+    </form>
+</div>
+
+  <div id="registration">
+    <h1>Offer a new official</h1>
+    <div>
+      <form name='myForm' (submit)= "onSubmit()" #myForm="ngForm">
+
+      <p>*First name: </p>
+      
+      <input 
+      type="text" 
+      name="first_name" 
+      required 
+      minlength="1" 
+      maxlength="24"
+      [(ngModel)]="official.first_name"
+      #first_name='ngModel'
+      ><strong *ngIf='first_name.valid && ( first_name.dirty || first_name.touched)'><span style="color: green">  Looks good!</span></strong>
+      <strong *ngIf='first_name.invalid && ( first_name.dirty || first_name.touched)'><span style="color: red">  First name must be 4 characters long</span></strong>
+     
+    <p>*Last name: </p>
+
+    <input 
+      type="text" 
+      name="last_name" 
+      required 
+      minlength="1"
+      maxlength="24"
+      [(ngModel)]="official.last_name"
+      #last_name='ngModel'
+    ><strong *ngIf='last_name.invalid && ( last_name.dirty || last_name.touched)'><span style="color: red">  Last name must be 4 characters long</span></strong>
+    <strong *ngIf='last_name.valid && ( last_name.dirty || last_name.touched)'><span style="color: green">  Looks good!</span></strong>
+      
+    <p>Description: </p>
+    <input 
+      type="text" 
+      name="description" 
+      [(ngModel)]="official.description"
+    >
+      
+
+      
+    
+    <p>Photo URL: </p>
+    <input 
+      type="text" 
+      name="photo"
+      [(ngModel)]="official.photo">
+      
+
+
+      <br><br><input type="submit" [disabled]="myForm.invalid">
+
+      </form>
+
+    </div>
+    </div>
+</div>
