@@ -6,7 +6,7 @@ import { RegComponent } from './reg/reg.component';
 import { NewdepComponent } from './newdep/newdep.component';
 import { OfficialComponent } from './official/official.component';
 import { RequestComponent } from './request/request.component';
-
+import { EditComponent } from './edit/edit.component';
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'enter', component: HomeOneComponent, pathMatch: 'full' },
@@ -14,6 +14,8 @@ const routes: Routes = [
 	{ path: 'signin', component: RegComponent, pathMatch: 'full' },
 	{ path: 'newofficial', component: NewdepComponent, pathMatch: 'full' },
 	{ path: 'newrequest', component: RequestComponent, pathMatch: 'full' },
+	{ path: 'edit/:id', component: EditComponent, pathMatch: 'full' },
+	
 	// { path: 'ratings', component: PostsComponent },
 	// { path: 'players/addplayer', component: HomeNewComponent },
 	// { path: 'players/delete/:id', component: HomeNewComponent },

@@ -5,6 +5,8 @@ export class Official {
     public rating: number = 0,
     public description: string = "",
     public photo: string = "",
-    public status: string =""
+    public status: string ="",
+    public state: string ="",
+    public city: string=""
   ){}
 }

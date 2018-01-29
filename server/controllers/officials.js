@@ -61,7 +61,9 @@ module.exports = {
                 rating: 0,
                 description: req.body.description,
                 photo: req.body.photo,
-                status: "unconfirmed"
+                status: "unconfirmed",
+                state: req.body.state,
+                city: req.body.city
               });
           official.save()
             .then(saved => {
@@ -84,6 +86,45 @@ module.exports = {
         res.json(err);
       }
     })
+  },
+  filter: function(req, res){
+      Official.find({ $and: [ { status: "confirmed" }, { state: req.body.state }, { city: req.body.city }  ] })
+              .then(data => {
+                res.json(data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+              
+    },
+  update: function(req, res){
+      Official.update({_id: req.body._id}, {$set: 
+        {
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          status: req.body.status,
+          description: req.body.description,
+          photo: req.body.photo,
+          city: req.body.city,
+          state: req.body.state
+        }
+      })
+              .then(data => {
+                res.json(data);
+                console.log(data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+  },
+  remove: function(req, res){
+    Official.remove({id: req.body._id})
+      .them(data=>{
+        res.json(data);
+      })
+      .catch(err=>{
+        console.log(err)
+        res.json(err)
+      })
   }
-
 }

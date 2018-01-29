@@ -58,7 +58,19 @@ module.exports = function(app) {
 	  console.log('----------------------------------')
 	  official.confirm(req, res)
 	});
-
+	app.post('/official/filter', (req, res, next)=>{
+	  console.log('filtering officials')
+	  console.log('----------------------------------')
+	  official.filter(req, res)
+	});
+	app.post('/official/update', (req, res, next)=>{
+	  console.log('updating official', req.body._id)
+	  official.update(req, res)
+	});
+	app.post('/official/remove', (req, res, next)=>{
+	  console.log('removing official', req.body._id)
+	  official.remove(req, res)
+	});
 	///////////////////// promises
 	app.post('/prom/new', (req, res, next)=>{
 	  console.log('new prom')

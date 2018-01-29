@@ -72,7 +72,29 @@
       name="description" 
       [(ngModel)]="official.description"
     >
-      
+    <p>*State: </p>
+     <input 
+      type="text" 
+      name="state" 
+      required 
+      minlength="1"
+      maxlength="24"
+      placeholder="Full state name" 
+      [(ngModel)]="official.state"
+      #state='ngModel'
+    ><strong *ngIf='state.invalid && ( state.dirty || state.touched)'><span style="color: red">  Invalid input</span></strong>
+ 	
+ 	<p>*City: </p>
+ 	 <input 
+      type="text" 
+      name="city" 
+      required 
+      minlength="1"
+      maxlength="24"
+      placeholder="Full city name" 
+      [(ngModel)]="official.city"
+      #city='ngModel'
+    ><strong *ngIf='city.invalid && ( city.dirty || city.touched)'><span style="color: red">  Invalid input</span></strong>
 
       
     

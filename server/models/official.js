@@ -7,6 +7,8 @@ var officialSchema = new mongoose.Schema({
     description:  { type: String },
     rating:  { type: Number },
     photo:  { type: String },
+    state:  { type: String },
+    city:  { type: String },
     status: { type: String }
 }, {timestamps: true });
 

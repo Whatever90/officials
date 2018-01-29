@@ -1,91 +1,58 @@
-<a [routerLink]="['/enter']">Back</a>
-<div *ngIf='official'>
-	<h1>{{official.first_name}} {{official.last_name}}</h1>
-	<h3>{{official.description}}</h3>
-	<img src={{official.photo}}>
+<!DOCTYPE html>
+<html>
 
-<h3>Total promises: {{total}}</h3>
-<h3>Failed: {{failed.length}}</h3>
-<h3>Succeed: {{succeed.length}}</h3>
-<h3>Processing: {{proccessing.length}}</h3>
-<div class="prom" *ngIf='promises'>
-	<div *ngFor='let x of promises'>
-		<h4>{{x.title}}</h4>
-		<p>{{x.description}}</p>
-		<p>{{x.status}}</p>
-		<a href={{x.link}}>Source</a>
-		<span *ngIf='admin==true'>
-			<select (change)="onChange(x._id, $event.target.value)">
-				<option value="">Choose one</option>
-				<option value="inproccess">In proccess</option>
-	          	<option value="succeed">Succeed</option>
-	          	<option value="failed">Failed</option>
-			</select>
-		</span>
-		
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <!-- <link rel="stylesheet" href="vendor/bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Features-Clean.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
 
-	</div>
-</div>
+<body>
+    <div class="features-clean">
+    	<img class="img-rounded img-responsive visible-xs-block visible-sm-block visible-md-block visible-lg-block visible-xs-inline visible-sm-inline visible-md-inline" height="300" src={{official.photo}} style="position: absolute;">
+        <div class="container">
+            <div class="intro" style="margin-left: 500px">
 
+                <h2 class="text-center">{{official.first_name}} {{official.last_name}}</h2>
+                <p class="text-center">{{official.description}} </p>
+                
+				<h3 class="text-center">Total promises: {{total}}</h3>
+				<h3 class="text-center">Failed: {{failed.length}}</h3>
+				<h3 class="text-center">Succeed: {{succeed.length}}</h3>
+				<h3 class="text-center">Processing: {{proccessing.length}}</h3>
+				<a class="text-center" *ngIf='admin==true' [routerLink]="['/edit', official._id]">Edit</a>
+            </div>
+            <div class="row features">
+            	<div class="prom" *ngIf='promises'>
+                <div *ngFor='let x of promises' class="col-md-4 col-sm-6 item"><i class="glyphicon glyphicon-map-marker icon"></i>
+                    <h3 class="name">{{x.title}}</h3>
+                    <p class="description">{{x.description}}</p>
+                    <p class="description">{{x.status}}</p>
+                    <a href={{x.link}}>Source</a>
+						<span *ngIf='admin==true'>
+							<select (change)="onChange(x._id, $event.target.value)">
+								<option value="">Choose one</option>
+								<option value="inproccess">In proccess</option>
+					          	<option value="succeed">Succeed</option>
+					          	<option value="failed">Failed</option>
+							</select>
+						</span>
+                </div>
 
-<div id='post_form'>
-    <h4>Say what do you think about {{official.first_name}} {{official.last_name}}</h4>
-    <form NAME='myForm' (submit)= "createPost()" #myForm="ngForm">
-        <p>Text: <input class='inbox'
-          type="text"
-          required 
-          name="text"
-          minlength="1" 
-          [(ngModel)]="post.text"
-          #text='ngModel'>
-        </p>
-
-        <p>Name (optional): <input class='inbox' 
-          type="text" 
-          name="user"
-          [(ngModel)]="post.user"
-          #user='ngModel'>
-        </p>
-
-      <input type="submit" value="Send" [disabled]="myForm.invalid">
-    </form>
-  </div>
-</div>
-<div *ngIf='posts'>
-	<div id = "post">
-		<div *ngFor='let x of posts; let in = index'>
-			<div id="one_post">
-				<p>{{x.user}} said:</p>
-				<p style="margin-top: -15px">{{x.text}}</p>
-				<p style="font-size: xx-small;color: grey; margin-top: -15px" align="right" >{{x.createdAt}}</p>
-				<span *ngIf='admin==true'>
-				  			<button (click)="deletePost(x._id)">Delete</button>
-				  		</span>
-				<p style="font-size: small;" align="right">Leave a comment:</p>
-				<div id='comment_form' align='right'>
-				   
-
-						<div>
-						      <input name="text" type="text" placeholder="comment..." [(ngModel)] = "arrComments[in]['text']">
-						      <input name="text" type="text" placeholder="Name(optional)" [(ngModel)] = "arrComments[in]['user']">
-						      <br>
-						      <button (click)="createComment(in, x._id)">Add</button>
-						</div>
 					
+				</div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
 
-				  </div>
-				  <div *ngFor='let comment of x.comments'>
-				  	<div class='one_comment' style="margin-left: 70px">
-				  		<p style="font-size: x-small; margin-bottom: -10px ">{{comment.user}} commented: </p>
-				  		<p style="font-size: small">{{comment.text}}</p>
-				  		<span *ngIf='admin==true'>
-				  			<button (click)="deleteComment(comment._id)">Delete</button>
-				  		</span>
-				  	</div>
-				  </div>
-			</div>
-		</div>	
-	</div>
-	
-</div>
+</html>

@@ -1,3 +1,84 @@
-<p>
-  edit works!
-</p>
+<a [routerLink]="['/enter']">Back</a>
+<div id="registration">
+    <h1>Edit official</h1>
+    <div *ngIf='bool!=false'>
+      <form name='myForm' #myForm="ngForm">
+
+      <p>*First name: </p>
+      
+      <input 
+      type="text" 
+      name="first_name" 
+      required 
+      minlength="1" 
+      maxlength="24"
+      [(ngModel)]="official.first_name"
+      #first_name='ngModel'
+      ><strong *ngIf='first_name.valid && ( first_name.dirty || first_name.touched)'><span style="color: green">  Looks good!</span></strong>
+      <strong *ngIf='first_name.invalid && ( first_name.dirty || first_name.touched)'><span style="color: red">  First name must be 4 characters long</span></strong>
+     
+    <p>*Last name: </p>
+
+    <input 
+      type="text" 
+      name="last_name" 
+      required 
+      minlength="1"
+      maxlength="24"
+      [(ngModel)]="official.last_name"
+      #last_name='ngModel'
+    ><strong *ngIf='last_name.invalid && ( last_name.dirty || last_name.touched)'><span style="color: red">  Last name must be 4 characters long</span></strong>
+    <strong *ngIf='last_name.valid && ( last_name.dirty || last_name.touched)'><span style="color: green">  Looks good!</span></strong>
+      
+    <p>Description: </p>
+    <input 
+      type="text" 
+      name="description" 
+      [(ngModel)]="official.description"
+    >
+    <p>*State: </p>
+     <input 
+      type="text" 
+      name="state" 
+      required 
+      minlength="1"
+      maxlength="24"
+      placeholder="Full state name" 
+      [(ngModel)]="official.state"
+      #state='ngModel'
+    ><strong *ngIf='state.invalid && ( state.dirty || state.touched)'><span style="color: red">  Invalid input</span></strong>
+ 	
+ 	<p>*City: </p>
+ 	 <input 
+      type="text" 
+      name="city" 
+      required 
+      minlength="1"
+      maxlength="24"
+      placeholder="Full city name" 
+      [(ngModel)]="official.city"
+      #city='ngModel'
+    ><strong *ngIf='city.invalid && ( city.dirty || city.touched)'><span style="color: red">  Invalid input</span></strong>
+
+      
+    
+    <p>Photo URL: </p>
+    <input 
+      type="text" 
+      name="photo"
+      [(ngModel)]="official.photo">
+    <p>Status: </p>
+    <select name="status" [(ngModel)]="official.status" #status='ngModel'>
+    	<option value="confirmed">Confirmed</option>
+    	<option value="unconfirmed">Unconfirmed</option> 	
+    </select>
+
+      <br><br><button type="button" (click)="onSubmit()" [disabled]="myForm.invalid">Submit</button>
+
+      </form>
+
+    </div>
+    <button (click)="deleteOne()">Delete forever...Click this and the burron below</button>
+    <button (click)="deleteTwo()">DELETE!</button>
+    </div>
+

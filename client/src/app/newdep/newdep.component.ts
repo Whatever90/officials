@@ -19,6 +19,7 @@ export class NewdepComponent implements OnInit {
   un_officials;
   requests;
   user = null;
+  un_officials_bool = false;
   constructor(private _taskService: TaskService, private _route: ActivatedRoute , private _http: Http, private _r: Router) {
   	this.showUser();
     this.unconfirmed();
@@ -66,7 +67,11 @@ export class NewdepComponent implements OnInit {
     this._taskService.showAllUnconfirmedOfficials(function(data,err){
  
       if(data){
-        this.unofficials = data; 
+        this.unofficials = data;
+        if(data.length>0){
+          this.un_officials_bool = true;
+        } 
+        console.log(data)
       }
       if(err){
         console.log(err);

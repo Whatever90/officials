@@ -65,15 +65,17 @@
         </div>
       </div>
   </div>
-  <div *ngIf='un_officials'>
-    <h2 align="center">List of new officials</h2>
+  <div *ngIf='un_officials_bool==true'>
+    <h2 align="center">List of unconfirmed officials</h2>
       <div  id='requests'>
-          <div *ngFor='let x of un_officials'>
+          <div *ngFor='let x of unofficials'>
             <div class="request">
               <img src={{x.photo}} width="300">
               <p>{{x.first_name}} {{x.last_name}}</p>
               <p>{{x.description}}</p>
               <button (click)="confirm(x._id)">Confirm and Add</button>
+
+              <a [routerLink]="['/edit', x._id]">Edit</a>
             </div>
           </div>
         </div>

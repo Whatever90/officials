@@ -75,6 +75,31 @@ export class TaskService {
        .map(data => data.json())
        .subscribe(data => console.log(data));
    }
+
+   filterByLocation(search, callback){
+     search={
+       state: search["state"],
+       city: search["city"]
+     }
+     console.log("ill find you", search)
+     this._http.post("/official/filter", search)
+       .map(data => data.json())
+       .subscribe(data => callback(data));
+   }
+   officialUpdate(official){
+     console.log(official);
+     this._http.post("/official/update", official)
+       .map(data=>data.json())
+       .subscribe(data=>console.log(data));
+   }
+   deleteOfficial(id){
+     id={
+       id:id
+     }
+     this._http.post("/official/remove", id)
+       .map(data=>data.json())
+       .subscribe(data=>console.log(data));
+   }
    ////
    getPromises(id, callback){
      id={
