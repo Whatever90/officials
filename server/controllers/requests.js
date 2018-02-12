@@ -49,5 +49,15 @@ module.exports = {
             }
           })
   },
+  delete: function(req, res){
+    Request.remove({_id: req.body.id})
+      .then(data=>{
+        res.json(data);
+      })
+      .catch(err=>{
+        console.log(err)
+        res.json(err)
+      })
+  }
 
 }

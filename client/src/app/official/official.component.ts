@@ -12,7 +12,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'app-official',
   templateUrl: './official.component.html',
-  styleUrls: ['./Features-Clean.css', './styles.css'] //styleUrls: ['./official.component.css']
+  styleUrls: ['./Features-Clean.css', './Footer-Dark.css', './Navigation-Clean1.css', './official.component.css'] //styleUrls: ['./official.component.css']
 })
 export class OfficialComponent implements OnInit {
 	official;

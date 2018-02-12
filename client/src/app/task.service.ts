@@ -30,6 +30,8 @@ export class TaskService {
    logout(){
    	this.user = null;
    };
+   ////
+   
    showAll(callback){
    	console.log('show all!')
    	this._http.get("/user/all").subscribe(
@@ -38,6 +40,13 @@ export class TaskService {
       )
    		
    };
+   ///////////
+   getEveryOne(callback){
+     this._http.get("/official/everyone").subscribe(
+       (data)=>callback(data.json())),
+       (err)=>console.log(err)
+   }
+
    newOfficial(official, callback){
    	this._http.post("/official/new", official)
    		.map(data => data.json() ) //
@@ -127,6 +136,14 @@ export class TaskService {
      this._http.post("/prom/update", id)
        .map(data => data.json())
        .subscribe(data => console.log(data))
+   }
+   deletePromise(id, callback){
+     id = {
+       id: id
+     }
+     this._http.post("/request/delete", id)
+       .map(data => data.json())
+       .subscribe(data => callback(data))
    }
    ///////////comments/////
    createPost(post, callback){

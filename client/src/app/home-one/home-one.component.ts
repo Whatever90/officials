@@ -8,7 +8,7 @@ import { TaskService } from '../task.service';
 @Component({
   selector: 'app-home-one',
   templateUrl: './home-one.component.html',
-  styleUrls: ['./home-one.component.css']
+  styleUrls: ['./Footer-Dark.css', './Navigation-Clean1.css', './Projects-Horizontal.css', './styles.css', './home-one.component.css']
 })
 export class HomeOneComponent implements OnInit {
   users;
@@ -47,6 +47,9 @@ export class HomeOneComponent implements OnInit {
         this.officials_copy = data;
         this.states = [];
         for(let i = 0; i<this.officials.length; i++){
+          if(this.officials[i].description.length>75){
+            this.officials[i].description = this.officials[i].description.substring(0, 75) + "...";
+          }
             if(!this.states.includes(this.officials[i].state)){
               this.states.push(this.officials[i].state);
               this.states[this.officials[i].state] = [];

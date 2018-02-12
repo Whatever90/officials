@@ -7,13 +7,30 @@
     <title>test</title>
     <!-- <link rel="stylesheet" href="vendor/bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/Features-Clean.css">
-    <link rel="stylesheet" href="/styles.css">
+    <!-- <link rel="stylesheet" href="/Features-Clean.css">
+    <link rel="stylesheet" href="/Footer-Dark.css">
+    <link rel="stylesheet" href="/Navigation-Clean1.css"> -->
+    <link rel="stylesheet" href="/">
 </head>
 
 <body>
-    <div class="features-clean">
-    	<img class="img-rounded img-responsive visible-xs-block visible-sm-block visible-md-block visible-lg-block visible-xs-inline visible-sm-inline visible-md-inline" height="300" src={{official.photo}} style="position: absolute;">
+	<div>
+		<nav class="navbar navbar-inverse navigation-clean" style="background-color:rgb(40,45,50);">
+	            <div class="container" *ngIf="official!=null">
+	                <div class="navbar-header"><a class="navbar-brand" href="#">OfficialPromise</a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+	                </div>
+	                <div class="collapse navbar-collapse" id="navcol-1">
+	                    <ul class="nav navbar-nav navbar-right">
+	                        <li role="presentation"><a [routerLink]="['/enter']" style="color:rgb(255,255,255);">All officials</a></li>
+	                        <li role="presentation"><a href="#">+Add new person or promise</a></li>
+	                    </ul>
+	            	</div>
+	    	</div>
+	    </nav>
+    </div>
+    <div class="features-clean"  *ngIf="official!=null" >
+    		<img class="img-rounded img-responsive visible-xs-block visible-sm-block visible-md-block visible-lg-block visible-xs-inline visible-sm-inline visible-md-inline" width="35%" src={{official.photo}} style="position: absolute;max-height:70%; max-width:42%;height:auto;width:auto; margin: auto">
+    	
         <div class="container">
             <div class="intro" style="margin-left: 500px">
 
@@ -48,6 +65,72 @@
             </div>
         </div>
     </div>
+    <!--  -->
+    <!--  -->
+    <div id='post_form'  *ngIf="official!=null">
+	    <h4>Say what do you think about {{official.first_name}} {{official.last_name}}</h4>
+	    <form NAME='myForm' (submit)= "createPost()" #myForm="ngForm" id="post_form_form">
+	        <p>Text: <input class='inbox'
+	          type="text"
+	          required 
+	          name="text"
+	          minlength="1" 
+	          [(ngModel)]="post.text"
+	          #text='ngModel'>
+	        </p>
+
+	        <p>Name (optional): <input class='inbox' 
+	          type="text" 
+	          name="user"
+	          [(ngModel)]="post.user"
+	          #user='ngModel'>
+	        </p>
+
+	      <input type="submit" value="Send" [disabled]="myForm.invalid">
+	    </form>
+	</div>
+
+	<div *ngIf='posts'>
+	<div id = "post">
+		<div *ngFor='let x of posts; let in = index'>
+			<div id="one_post">
+				<p>{{x.user}} said:</p>
+				<p style="margin-top: -15px">{{x.text}}</p>
+				<p style="font-size: xx-small;color: grey; margin-top: -15px" align="right" >{{x.createdAt}}</p>
+				<span *ngIf='admin==true'>
+				  			<button (click)="deletePost(x._id)">Delete</button>
+				  		</span>
+				<p style="font-size: small;" align="right">Leave a comment:</p>
+				<div id='comment_form' align='right'>
+				   
+
+						<div>
+						      <input name="text" type="text" placeholder="comment..." [(ngModel)] = "arrComments[in]['text']">
+						      <input name="text" type="text" placeholder="Name(optional)" [(ngModel)] = "arrComments[in]['user']">
+						      <br>
+						      <button (click)="createComment(in, x._id)">Add</button>
+						</div>
+					
+
+
+				  </div>
+				  <div *ngFor='let comment of x.comments'>
+				  	<div class='one_comment' style="margin-left: 70px">
+				  		<p style="font-size: x-small; margin-bottom: -5px ">{{comment.user}} commented: </p>
+				  		<p style="font-size: small">{{comment.text}}</p>
+				  		<span *ngIf='admin==true'>
+				  			<button (click)="deleteComment(comment._id)">Delete</button>
+				  		</span>
+				  	</div>
+				  </div>
+			</div>
+		</div>	
+	</div>
+	
+</div>
+	<!--  -->
+	<!--  -->
+    
     <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

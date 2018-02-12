@@ -33,6 +33,11 @@ module.exports = function(app) {
 	});
 
 	////////////////// officials
+	app.get('/official/everyone', (req, res, next)=>{
+	  console.log('everyone')
+	  console.log('----------------------------------')
+	  official.everyone(req, res)
+	});
 	app.post('/official/new', (req, res, next)=>{
 	  console.log('new official')
 	  console.log('----------------------------------')
@@ -87,6 +92,7 @@ module.exports = function(app) {
 	  console.log('----------------------------------')
 	  prom.update(req, res)
 	});
+	
 
 	////requests
 	app.post('/request/new', (req, res, next)=>{
@@ -98,6 +104,11 @@ module.exports = function(app) {
 	  console.log('find all requests')
 	  console.log('----------------------------------')
 	  request.all(req, res)
+	});
+	app.post('/request/delete', (req, res, next)=>{
+	  console.log('delete promise', req.body.id)
+	  console.log('----------------------------------')
+	  request.delete(req, res)
 	});
 
 	///////////////////// posts

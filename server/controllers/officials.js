@@ -7,6 +7,15 @@ var bcrypt = require('bcryptjs')
 var Official = mongoose.model('Official');
 //console.log(User)
 module.exports = {
+  everyone: function(req,res){
+           Official.find({})
+           .then(data => {
+             res.json(data);
+           })
+           .catch(err=>{
+             console.log(err);
+           })
+         },
    all: function(req, res){
     Official.find({status: "confirmed"})
               .then(data => {
@@ -118,8 +127,8 @@ module.exports = {
               });
   },
   remove: function(req, res){
-    Official.remove({id: req.body._id})
-      .them(data=>{
+    Official.remove({_id: req.body.id})
+      .then(data=>{
         res.json(data);
       })
       .catch(err=>{

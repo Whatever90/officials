@@ -11,9 +11,9 @@ module.exports = {
     Prom.find({})
               .then(data => {
                 res.json(data);
-                console.log(data);
               })
               .catch(err => {
+                console.log("ERROR")
                 console.log(err);
               });
               
@@ -70,6 +70,17 @@ module.exports = {
         res.json(err);
       }
     })
+  },
+  delete: function(req, res){
+    Prom.remove({_id: req.body.id}, false)
+      .then(data=>{
+        res.json(data);
+      })
+      .catch(err=>{
+        console.log(err)
+        res.json(err)
+      })
   }
+
 
 }

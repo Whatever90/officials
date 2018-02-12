@@ -1,115 +1,138 @@
-<a [routerLink]="['/enter']">Back</a>
-<div id="input">
-<div id="login">
-	<h1>Adding a promise</h1>
-    <form NAME='myForm2' (submit)= "newRequest()" #myForm2="ngForm">
-        <p>Link: <input class='inbox'
-          type="text"
-          required 
-          name="link"
-          minlength="2" 
-          [(ngModel)]="request.link"
-          #link='ngModel'>
-          <strong *ngIf='link.invalid && ( link.dirty || link.touched)'><span style="color: red">   Uphold Email format</span></strong><strong *ngIf='link.valid && ( link.dirty || link.touched)'><span style="color: green">   Looks good!</span></strong>
-        </p>
-        <p>Description: <input class='inbox' 
-          type="text" 
-          required 
-          minlength="2"
-          name="description"
-          [(ngModel)]="request.description"
-          #description='ngModel'>
-        </p>
-        <p>Your e-mail: <input class='inbox'
-          type="text"
-          required 
-          name="email"
-          minlength="2" 
-          [(ngModel)]="request.email"
-          #email='ngModel'>
-          <strong *ngIf='email.invalid && ( email.dirty || email.touched)'><span style="color: red">   Uphold Email format</span></strong><strong *ngIf='email.valid && ( email.dirty || email.touched)'><span style="color: green">   Looks good!</span></strong>
-        </p>
-        
+<!DOCTYPE html>
+<html>
 
-      <input type="submit" value="Add" [disabled]="myForm2.invalid">
-    </form>
-</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled (copy)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="/Footer-Dark.css">
+    <link rel="stylesheet" href="/Navigation-Clean1.css">
+    <link rel="stylesheet" href="/Projects-Horizontal.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
 
-  <div id="registration">
-    <h1>Offer a new official</h1>
+<body>
     <div>
-      <form name='myForm' (submit)= "onSubmit()" #myForm="ngForm">
+        <nav class="navbar navbar-inverse navigation-clean" style="background-color:rgb(40,45,50);">
+            <div class="container">
+                <div class="navbar-header"><a class="navbar-brand" href="#">OfficialPromise</a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li role="presentation"><a [routerLink]="['/enter']" style="color:rgb(255,255,255);">All officials</a></li>
 
-      <p>*First name: </p>
-      
-      <input 
-      type="text" 
-      name="first_name" 
-      required 
-      minlength="1" 
-      maxlength="24"
-      [(ngModel)]="official.first_name"
-      #first_name='ngModel'
-      ><strong *ngIf='first_name.valid && ( first_name.dirty || first_name.touched)'><span style="color: green">  Looks good!</span></strong>
-      <strong *ngIf='first_name.invalid && ( first_name.dirty || first_name.touched)'><span style="color: red">  First name must be 4 characters long</span></strong>
-     
-    <p>*Last name: </p>
-
-    <input 
-      type="text" 
-      name="last_name" 
-      required 
-      minlength="1"
-      maxlength="24"
-      [(ngModel)]="official.last_name"
-      #last_name='ngModel'
-    ><strong *ngIf='last_name.invalid && ( last_name.dirty || last_name.touched)'><span style="color: red">  Last name must be 4 characters long</span></strong>
-    <strong *ngIf='last_name.valid && ( last_name.dirty || last_name.touched)'><span style="color: green">  Looks good!</span></strong>
-      
-    <p>Description: </p>
-    <input 
-      type="text" 
-      name="description" 
-      [(ngModel)]="official.description"
-    >
-    <p>*State: </p>
-     <input 
-      type="text" 
-      name="state" 
-      required 
-      minlength="1"
-      maxlength="24"
-      placeholder="Full state name" 
-      [(ngModel)]="official.state"
-      #state='ngModel'
-    ><strong *ngIf='state.invalid && ( state.dirty || state.touched)'><span style="color: red">  Invalid input</span></strong>
- 	
- 	<p>*City: </p>
- 	 <input 
-      type="text" 
-      name="city" 
-      required 
-      minlength="1"
-      maxlength="24"
-      placeholder="Full city name" 
-      [(ngModel)]="official.city"
-      #city='ngModel'
-    ><strong *ngIf='city.invalid && ( city.dirty || city.touched)'><span style="color: red">  Invalid input</span></strong>
-
-      
-    
-    <p>Photo URL: </p>
-    <input 
-      type="text" 
-      name="photo"
-      [(ngModel)]="official.photo">
-      
-
-
-      <br><br><input type="submit" [disabled]="myForm.invalid">
-
-      </form>
-
+                        <li role="presentation"><a [routerLink]="['/newrequest']">+Add new person or promise</a></li>
+                    </ul>
+            </div>
     </div>
+    </nav>
     </div>
-</div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form NAME='myForm2' (submit)= "newRequest()" #myForm2="ngForm">
+                        <h2 class="text-center">Add a promise</h2>
+                        <div class="form-group">
+                        	<input class="form-control" type="text" name="link" minlength="2" required placeholder="*URL Link" [(ngModel)]="request.link"
+					          #link='ngModel'><strong *ngIf='link.invalid && ( link.dirty || link.touched)'><span style="color: red; font-size: xx-small;">   URL is required</span></strong><strong *ngIf='link.valid && ( link.dirty || link.touched)'><span style="color: green; font-size: xx-small">   Looks good!</span></strong>
+                        </div>
+
+                        <div class="form-group">
+                        	<input class="form-control" required type="email" name="email" minlength="2" placeholder="*Your E-mail" [(ngModel)]="request.email"
+				          #email='ngModel'
+				          ngModel email="true"><strong *ngIf='email.invalid && ( email.dirty || email.touched)'><span style="color: red; font-size: xx-small">   Uphold Email format</span></strong><strong *ngIf='email.valid && ( email.dirty || email.touched)'><span style="color: green; font-size: xx-small">   Looks good!</span></strong>
+                        </div>
+                        <div class="form-group"><textarea class="form-control" required minlength="2" rows="14" name="desc" placeholder="*Description" [(ngModel)]="request.description"
+				          #desc='ngModel'></textarea></div>
+                        
+                        <div class="form-group"><input type="submit" value="Add" [disabled]="myForm2.invalid"></div>
+
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form name='myForm' (submit)= "onSubmit()" #myForm="ngForm">
+                        <h2 class="text-center">Offer a new politician</h2>
+                        <div class="form-group">
+                        	<input class="form-control" type="text" required name="first_name" placeholder="First name" minlength="1" 
+					      maxlength="24" [(ngModel)]="official.first_name"
+					      #first_name='ngModel'><strong *ngIf='first_name.valid && ( first_name.dirty || first_name.touched)'><span style="color: green; font-size: xx-small">  Looks good!</span></strong>
+					      <strong *ngIf='first_name.invalid && ( first_name.dirty || first_name.touched)'><span style="color: red; font-size: xx-small">  First name must be 4 characters long</span></strong>
+                        </div>
+                        
+
+
+                        <div class="form-group">
+                        	<input class="form-control" type="text" name="last_name" placeholder="Last name" required 
+							      minlength="1"
+							      maxlength="24"
+							      [(ngModel)]="official.last_name"
+							      #last_name='ngModel'>
+							<strong *ngIf='last_name.valid && ( last_name.dirty || last_name.touched)'><span style="color: green; font-size: xx-small">  Looks good!</span></strong>
+                        	<strong *ngIf='last_name.invalid && ( last_name.dirty || last_name.touched)'><span style="color: red; font-size: xx-small">  Last name must be 4 characters long</span></strong>
+                        </div>
+                        
+
+                        <div class="form-group">
+                        	<input class="form-control" type="text" name="state" placeholder="Full state name" required 
+							      minlength="1"
+							      maxlength="24"
+							      [(ngModel)]="official.state"
+				      				#state='ngModel'>
+							<strong *ngIf='state.valid && ( state.dirty || state.touched)'><span style="color: green; font-size: xx-small">  Looks good!</span></strong>
+                        	<strong *ngIf='state.invalid && ( state.dirty || state.touched)'><span style="color: red; font-size: xx-small">  Invalid input</span></strong>
+                        </div>
+
+                        <div class="form-group">
+                        	<input class="form-control" type="text" name="city" placeholder="Full city name" required 
+							      minlength="1"
+							      maxlength="24"
+							      [(ngModel)]="official.city"
+					      #city='ngModel'>
+							<strong *ngIf='city.valid && ( city.dirty || city.touched)'><span style="color: green; font-size: xx-small">  Looks good!</span></strong>
+                        	<strong *ngIf='city.invalid && ( city.dirty || city.touched)'><span style="color: red; font-size: xx-small">  Invalid input</span></strong>
+                        </div>
+					 	<div class="form-group">
+                        	<input class="form-control" type="text" placeholder="Photo URL" 
+							      minlength="1"
+      							name="photo" 
+      							[(ngModel)]="official.photo"
+      							#photo='ngModel'
+      							><strong *ngIf='photo.valid && ( photo.dirty || photo.touched)'><span style="color: green; font-size: xx-small">  Looks good!</span></strong>
+                        	<strong *ngIf='photo.invalid && ( photo.dirty || photo.touched)'><span style="color: red; font-size: xx-small">  Invalid input</span></strong>
+      
+                        </div>
+
+						<div class="form-group">
+                        	<textarea class="form-control" name="description" rows="5" placeholder="Tell us smth about this person" required 
+							      minlength="1"
+							      type="text"
+      							[(ngModel)]="official.description" #description='ngModel'></textarea><strong *ngIf='description.valid && ( description.dirty || description.touched)'><span style="color: green; font-size: xx-small">  Looks good!</span></strong>
+                        	<strong *ngIf='description.invalid && ( description.dirty || description.touched)'><span style="color: red; font-size: xx-small">  Invalid input</span></strong>	
+      
+                        </div>
+                        <br>
+                        <div class="form-group"><input type="submit" [disabled]="myForm.invalid"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <p class="copyright">23rd Squad © 2018 </p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+<!--  -->

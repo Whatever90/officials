@@ -1,50 +1,134 @@
-<div id="main">
-	<div id="head">
-		<a [routerLink]="['/signin']">Login for admin</a>
-		<div *ngIf='user'>
-			<a [routerLink]="['/newofficial']">New Official</a>
-		</div>
-		<a [routerLink]="['/newrequest']">Add promise</a>
-		<p></p>
-		Seasrch:
-		<input type="text" name="val" class="form-control" placeholder="Enter state" (ngModelChange)="findTypedState($event)" [ngModel] = "typedSearch.search">
-		State:
-		<select (change)="findState($event.target.value)">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Footer-Dark.css">
+    <link rel="stylesheet" href="/Navigation-Clean1.css">
+    <link rel="stylesheet" href="/Projects-Horizontal.css">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-inverse navigation-clean" style="background-color:rgb(40,45,50);">
+            <div class="container">
+                <div class="navbar-header"><a class="navbar-brand" href="#">OfficialPromise</a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li role="presentation"><a [routerLink]="['/enter']" style="color:rgb(255,255,255);">All officials</a></li>
+
+                        <li role="presentation"><a [routerLink]="['/newrequest']">+Add new person or promise</a></li>
+                        <li role="presentation" *ngIf='user'>
+							<a [routerLink]="['/newofficial']">New Official</a>
+						</li>
+                    </ul>
+            </div>
+    </div>
+    </nav>
+    </div>
+    <div class="projects-horizontal">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">List of All Officials</h2>
+                <p class="text-center">This website was made to track politiсians' words and actions. Watch your mouth. We are people, we are watching you.</p>
+            </div>
+            <input type="text" name="val" class="form-control" placeholder="Search" (ngModelChange)="findTypedState($event)" [ngModel] = "typedSearch.search">
+
+            <p style="/*width:10%;*/">Filter by State:</p>
+            <!--  -->
+            <select (change)="findState($event.target.value)">
+            	<optgroup label="This is a group">
 				<option value="all">All</option>
 				<option *ngFor='let x of states' [value]="">{{x}}</option>
-		</select>
-		City:
-		<select (change)="findCity($event.target.value)">
-				<option value="">Choose one</option>
-				<option *ngFor='let x of cities' [value]="">{{x}}</option>
-		</select>
-	</div>
-	<div *ngIf="suggetions_bool" id="offs2">
-		<div *ngFor='let x of suggetions'>
-				<a [routerLink]="[x._id]">
-					<div id="official2">
-					<img src={{x.photo}} width="150px" height="90px">
-					<h3>Full name: {{x.first_name}} {{x.last_name}}</h3>
-					<p>Description: {{x.description}}</p>
-					<p>Location: {{x.city}}, {{x.state}}</p>
-						<p *ngIf='x.rating>-100'><span style="color: red"> Rating {{x.rating}}</span></p>
-				</div></a>
+				</optgroup>
+			</select>
+            <!--  -->
+          <!--   <select>
+            	<optgroup label="This is a group">
+	            	<option value="12" selected="">This is item 1</option>
+	            	<option value="13">This is item 2</option>
+	            	<option value="14">This is item 3</option>
+            	</optgroup>
+            </select> -->
+            <select (change)="findCity($event.target.value)">
+            	<optgroup label="This is a group" >
+            		<option value="">Choose one</option>
+					<option *ngFor='let x of cities' [value]="">{{x}}</option>
+            	</optgroup>
+            </select>
+            <div>
+            	<div *ngIf="suggetions_bool" id="offs2" class="row projects">
+            		<div class="col-sm-6 item" *ngFor='let x of suggetions'>
+	                    <a [routerLink]="[x._id]"><div class="row">
+	                        <div class="col-sm-5" align="center"><img class="img-rounded img-responsive" src={{x.photo}} style="width: 140px"></div>
+	                        <div class="col-sm-7">
+	                            <h3 class="name">{{x.first_name}} {{x.last_name}}</h3>
+	                            <p class="description">{{x.description}}</p>
+	                            <p class="description">Location: {{x.city}}, {{x.state}}</p>
+	                            <p class="description" *ngIf='x.rating>-100'><span style="color: red"> Rating {{x.rating}}</span></p>
+	                        </div>
+	                    </div></a>
+               		</div>
+					<!-- <div *ngFor='let x of suggetions' id='off_sug'>
+						<div class="off_sug">
+							<a [routerLink]="[x._id]">
+								<div id="official2">
+								<img src={{x.photo}} width="150px" height="90px">
+								<h3>Full name: {{x.first_name}} {{x.last_name}}</h3>
+								<p>Description: {{x.description}}</p>
+								<p>Location: {{x.city}}, {{x.state}}</p>
+									<p *ngIf='x.rating>-100'><span style="color: red"> Rating {{x.rating}}</span></p>
+							</div></a>
+						</div>
 
-			</div>
-	
-	</div>
-	<div id="list">
-		<div *ngIf='officials' id="offs">
-			<div *ngFor='let off of officials'>
-				<a [routerLink]="[off._id]"><div id="official">
-					<img src={{off.photo}} width="300px" height="180px">
-					<h3>Full name: {{off.first_name}} {{off.last_name}}</h3>
-					<p>Description: {{off.description}}</p>
-					<p>Location: {{off.city}}, {{off.state}}</p>
-						<p *ngIf='off.rating>-100'><span style="color: red"> Rating {{off.rating}}</span></p>
-				</div></a>
+					</div> -->
+				
+				</div>
 
-			</div>
-		</div>
-	</div>
-</div>
+
+
+
+
+
+            </div>
+            <div class="row projects" *ngIf='officials'>
+
+
+                <!--  -->
+               
+                <!--  -->
+
+                <div class="col-sm-6 item" *ngFor='let off of officials'>
+                    <a [routerLink]="[off._id]"><div class="row">
+                        <div class="col-md-5" align="center"><img class="img-rounded img-responsive" src={{off.photo}} style="height: 142px"></div>
+                        <div class="col-md-7">
+                            <h3 class="name">{{off.first_name}} {{off.last_name}}</h3>
+                            <p class="description">{{off.description}}</p>
+                            <p class="description">Location: {{off.city}}, {{off.state}}</p>
+                            <p class="description" *ngIf='off.rating>-100'><span style="color: red"> Rating {{off.rating}}</span></p>
+                        </div>
+                    </div></a>
+                </div>
+                <!--  -->
+            </div>
+        </div>
+    </div>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <p class="copyright">23rd Squad © 2018 </p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

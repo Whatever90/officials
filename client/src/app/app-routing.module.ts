@@ -8,7 +8,7 @@ import { OfficialComponent } from './official/official.component';
 import { RequestComponent } from './request/request.component';
 import { EditComponent } from './edit/edit.component';
 const routes: Routes = [
-	{ path: '', component: HomeComponent },
+	{ path: '', redirectTo:'enter', pathMatch:'full' },
 	{ path: 'enter', component: HomeOneComponent, pathMatch: 'full' },
 	{ path: 'enter/:id', component: OfficialComponent, pathMatch: 'full' },
 	{ path: 'signin', component: RegComponent, pathMatch: 'full' },

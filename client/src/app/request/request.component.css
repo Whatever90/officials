@@ -12,7 +12,7 @@
 #input{
 	display: flex;
 	padding: 10px 10px;
-	margin: auto 10;
+	margin: auto;
 }
 .probox{
 	border: 1px solid black;

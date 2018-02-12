@@ -9,11 +9,12 @@ import { Official } from '../official';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
-  styleUrls: ['./request.component.css']
+  styleUrls: ['./Footer-Dark.css', './Navigation-Clean1.css', './Projects-Horizontal.css', './request.component.css']
 })
 export class RequestComponent implements OnInit {
 	request = new Request();
 	official = new Official();
+	url_pattern = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
   constructor(private _taskService: TaskService, private _r: Router) { }
 
   ngOnInit() {

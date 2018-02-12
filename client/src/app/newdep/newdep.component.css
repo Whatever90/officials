@@ -22,13 +22,16 @@
 	display: flex;
 }
 #requests{
-	display: inline-flex;
+	display: block;
 }
 .request{
 	border: 1px solid silver;
 	width: 300px;
 	margin: 10px 10px;
 }
-#news{
+/*#news{
+	display: inline-flex;
+}*/
+#off_list{
 	display: inline-flex;
 }

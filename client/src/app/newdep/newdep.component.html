@@ -1,4 +1,24 @@
-<a [routerLink]="['/enter']">Back</a>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+   <div>
+        <nav class="navbar navbar-inverse navigation-clean" style="background-color:rgb(40,45,50);">
+            <div class="container">
+                <div class="navbar-header"><a class="navbar-brand" href="#">OfficialPromise</a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li role="presentation"><a [routerLink]="['/enter']" style="color:rgb(255,255,255);">All officials</a></li>
+
+                        <li role="presentation"><a [routerLink]="['/newrequest']">+Add new person or promise</a></li>
+                        <li role="presentation" *ngIf='user'>
+              <a [routerLink]="['/newofficial']">New Official</a>
+            </li>
+                    </ul>
+            </div>
+    </div>
+    </nav>
+    </div>
 <div id="input">
     <div id='login'>
     <h1>Adding a promise</h1>
@@ -61,24 +81,37 @@
             <a href={{x.link}}>Source</a>
             <p>{{x.description}}</p>
             <p>{{x.email}}</p>
+            <button (click)="deletePromise(x._id)">Delete</button>
           </div>
         </div>
       </div>
   </div>
-  <div *ngIf='un_officials_bool==true'>
+  <div>
     <h2 align="center">List of unconfirmed officials</h2>
-      <div  id='requests'>
-          <div *ngFor='let x of unofficials'>
-            <div class="request">
-              <img src={{x.photo}} width="300">
-              <p>{{x.first_name}} {{x.last_name}}</p>
-              <p>{{x.description}}</p>
-              <button (click)="confirm(x._id)">Confirm and Add</button>
+      <div id="off_list">
+        <div id='requests'>
+          <div *ngFor='let x of off_result'>
+                {{x[status]}}
+              <div *ngIf='x.status!="confirmed"' class="w3-card-4" style="width:25%; border: 5px silver solid">
+                <img src={{x.photo}} style="width:100%">
+                <div class="w3-container w3-center">
+                    <p>{{x.first_name}} {{x.last_name}}</p>
+                    <p>{{x.description}}</p>
+                    <button (click)="confirm(x._id)">Confirm and Add</button>
 
-              <a [routerLink]="['/edit', x._id]">Edit</a>
+                    <a [routerLink]="['/edit', x._id]">Edit</a>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+        
   </div>
 </div>
-
+<div class="footer-dark">
+        <footer>
+            <div class="container">
+                <p class="copyright">23rd Squad © 2018 </p>
+            </div>
+        </footer>
+    </div>
