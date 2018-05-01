@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 
 require('./server/config/mongoose.js');
 var session = require('express-session')
-app.use(session({secret: 'blablabla'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 var path = require('path');
 app.use(express.static(path.join(__dirname, '/client/dist')));
